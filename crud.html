@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <style>
+        body{font-family: arial; padding: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height:100vh;
+            margin:0;}
+        table{
+            border-collapse: collapse;
+            width:100%;
+            margin-top:200px;
+            background: white;
+            border-radius:8px;
+            overflow:hidden;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+        }
+        th,td{
+            border:1px solid #ddd;
+            padding:12px;
+            text-align:left;
+        }
+        th{
+            background: #4CAF50;
+            color:white;
+            font-weight:600;
+        }
+        .add-form{
+            background: #f8f9fa;
+            padding:25px;
+            margin-bottom: 30px;
+            border-radius:8px;
+            border: 1px solid #e0e0e0;
+        }
+        input{
+            padding: 8px;
+            margin: 2px;
+            border: 1px solid #ddd;
+            border-radius:4px;
+            width:100%;
+            boz-sizing: border-box;
+        }
+        button{
+            padding: 8px 15px;
+            margin:2px;
+            cursor:pointer;
+            border:none;
+            border-radius:4px;
+            font-weight:600;
+            transition: all 0.3s;
+        }
+        .edit-btn{
+            background: #008CBA;
+            color: white;
+        }
+        .delete-btn{
+            background: #f44336;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+<body>
+    <h2>Student Management System</h2>
+    <a href="/dashboard" class="back-link"><- Back to Dashboard</a>
+    <div class="add-form">
+        <h3>Add New Student</h3>
+        <form method="POST" action="/students/add">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="number" name="age" placeholder="Age" required>
+            <input type="text" name="grade" placeholder="Grade" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <button type="submit" class="add-btn">Add Student</button>
+        </form>
+    </div>
+    <table>
+    <td> Student Details</td>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Grade</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        {% for student in students %}
+
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>
+                <form method="POST" action="/students/edit/{{ student.id}}" style="display: inline;">
+                <input type="text" name="name" value="{{ student.name}}" required>
+            </td>
+            <td>
+                <input type="number" name="age" value="{{student.age}}" required>
+            </td>
+            <td><input type="text" name="grade" value="{{ student.grade}}" required></td>
+            <td><input type="email" name="email" value="{{ student.email}}" required></td>
+            <td> <button type="submit" class="edit-btn">Save</button>
+        </form>
+        <a href="/students/delete/{{student.id}}" class="delete-btn" style="padding: 8px 15px; text-decoration: none;" onclick="return confirm('Are you sure')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

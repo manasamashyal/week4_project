@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body{font-family: Arial; padding:20px
+        margin:0;
+            padding:0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height:100vh;}
+        .header{background: #333; color:white; padding:10px ; text-align:center;}
+        .nav{margin:20px 0;}
+        .nav a{padding:10px;background:#f4f4f4; text-decoration: none;color:#333;margin-right: 5px;}
+    </style>
+</head>
+<body>
+    <div class ="header">
+        <h2>Welcome,{{username}}!</h2>
+    </div>
+    <div class="nav">
+        <a href="/students"> Manage students</a>
+        <a href="/logout">Logout</a>
+    </div>
+    <p>This is your dashboard, Use the menu to manage students.</p>
+    
+</body>
+</html>
